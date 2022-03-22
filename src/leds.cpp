@@ -12,12 +12,13 @@ bool setLed(CRGB arrled[NUM_LEDS], int lednum, CRGB::HTMLColorCode color)
     try
     {
         arrled[lednum] = color;
-        return true;
     }
     catch (const std::exception &e)
     {
         return false;
     }
+    return true;
+
 }
 
 /**
@@ -35,12 +36,13 @@ bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode color)
     {
         // Code to execute here
         // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color
-        return true;
     }
     catch (const std::exception &e)
     {
         return false;
     }
+    return true;
+
 }
 
 /**
@@ -55,14 +57,16 @@ bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode color)
 {
     try
     {
+
         // Code to execute here
         // set all leds to the specified color
-        return true;
     }
     catch (const std::exception &e)
     {
         return false;
     }
+    return true;
+
 }
 
 /**
@@ -82,12 +86,12 @@ bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode colorarr[UN
         // Code to execute here
         // offset the leds in the array by UNIT_AMOUNT*(unitnum-1)
         // set the units leds to display the pattern
-        return true;
     }
     catch (const std::exception &e)
     {
         return false;
     }
+    return true;
 }
 
 /**
@@ -106,10 +110,10 @@ bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pa
         // Code to execute here
         
         // set all leds to display the pattern given
-        return true;
     }
     catch (const std::exception &e)
     {
         return false;
     }
+    return true;
 }
