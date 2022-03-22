@@ -61,8 +61,8 @@ white:
     WhiteSmoke=0xF5F5F5,
     Snow=0xFFFAFA,
     Seashell=0xFFF5EE,
-    Silver=0xC0C0C0,
     PapayaWhip=0xFFEFD5,
+    Silver=0xC0C0C0,
 
 
 orange:
