@@ -1,0 +1,70 @@
+red:
+    Crimson=0xDC143C,
+    DarkRed=0x8B0000,
+    Maroon=0x800000,
+    Red=0xFF0000,
+    Tomato=0xFF6347,
+
+Blue:
+    Navy=0x000080,
+    MidnightBlue=0x191970,
+    RoyalBlue=0x4169E1,
+    SteelBlue=0x4682B4,
+    MediumBlue=0x0000CD,
+    DodgerBlue=0x1E90FF,
+    DeepSkyBlue=0x00BFFF,
+    Cyan=0x00FFFF,
+    DarkBlue=0x00008B,
+    Blue=0x0000FF,
+    Aqua=0x00FFFF,
+
+green:
+    DarkGreen=0x006400,
+    Chartreuse=0x7FFF00,
+    Green=0x008000,
+    GreenYellow=0xADFF2F,
+    LawnGreen=0x7CFC00,
+    Lime=0x00FF00,
+    LimeGreen=0x32CD32,
+    LightGreen=0x90EE90,
+    MediumSeaGreen=0x3CB371,
+    MediumSpringGreen=0x00FA9A,
+    OliveDrab=0x6B8E23,
+    SeaGreen=0x2E8B57,
+    SpringGreen=0x00FF7F,
+    YellowGreen=0x9ACD32,
+
+Purple:
+    Amethyst=0x9966CC,
+    BlueViolet=0x8A2BE2,
+    DarkMagenta=0x8B008B,
+    DarkOrchid=0x9932CC,
+    DarkViolet=0x9400D3,
+    Indigo=0x4B0082,
+    MediumOrchid=0xBA55D3,
+    MediumPurple=0x9370DB,
+    MediumVioletRed=0xC71585,
+    Orchid=0xDA70D6,
+    Purple=0x800080,
+
+pink:
+    Fuchsia=0xFF00FF,
+    HotPink=0xFF69B4,
+    Magenta=0xFF00FF,
+
+yellow:
+    YellowGreen=0x9ACD32,
+    Yellow=0xFFFF00,
+
+white:
+    White=0xFFFFFF,
+    WhiteSmoke=0xF5F5F5,
+    Snow=0xFFFAFA,
+    Seashell=0xFFF5EE,
+    Silver=0xC0C0C0,
+    PapayaWhip=0xFFEFD5,
+
+
+orange:
+    Orange=0xFFA500,
+    DarkOrange=0xFF8C00,
