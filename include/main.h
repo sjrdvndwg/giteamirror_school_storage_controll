@@ -5,7 +5,7 @@
 #define NUM_LEDS 10
 #define UNIT_AMOUNT 5
 #define TOTAL_AMOUNT 9*UNIT_AMOUNT
-
+#define NOP() asm volatile ("nop")
 #include <Arduino.h>
 #include <FastLED.h>
 #include "leds.h"

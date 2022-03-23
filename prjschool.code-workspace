@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "ledstrip",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.h": "c",
+			"exception": "cpp"
+		}
+	}
+}

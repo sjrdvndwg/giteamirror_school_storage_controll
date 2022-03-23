@@ -11,6 +11,20 @@ typedef enum pattern
     noise
 } Pattern;
 
+typedef enum colorset
+{
+    Red,
+    Blue,
+    Green,
+    Purple,
+    Pink,
+    Yellow,
+    White,
+    Orange
+} ColorSet;
+
+void color(CRGB arrled[NUM_LEDS], ColorSet CS);
+
 bool setLed(CRGB arrled[NUM_LEDS], int lednum, CRGB::HTMLColorCode color);
 
 bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode color);

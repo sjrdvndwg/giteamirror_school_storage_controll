@@ -16,10 +16,8 @@ Blue:
     Cyan=0x00FFFF,
     DarkBlue=0x00008B,
     Blue=0x0000FF,
-    Aqua=0x00FFFF,
 
 green:
-    DarkGreen=0x006400,
     Chartreuse=0x7FFF00,
     Green=0x008000,
     GreenYellow=0xADFF2F,
@@ -27,10 +25,7 @@ green:
     Lime=0x00FF00,
     LimeGreen=0x32CD32,
     LightGreen=0x90EE90,
-    MediumSeaGreen=0x3CB371,
     MediumSpringGreen=0x00FA9A,
-    OliveDrab=0x6B8E23,
-    SeaGreen=0x2E8B57,
     SpringGreen=0x00FF7F,
     YellowGreen=0x9ACD32,
 
@@ -43,7 +38,6 @@ Purple:
     Indigo=0x4B0082,
     MediumOrchid=0xBA55D3,
     MediumPurple=0x9370DB,
-    MediumVioletRed=0xC71585,
     Orchid=0xDA70D6,
     Purple=0x800080,
 
@@ -63,8 +57,7 @@ white:
     Seashell=0xFFF5EE,
     PapayaWhip=0xFFEFD5,
     Silver=0xC0C0C0,
-
-
+    
 orange:
     Orange=0xFFA500,
     DarkOrange=0xFF8C00,
