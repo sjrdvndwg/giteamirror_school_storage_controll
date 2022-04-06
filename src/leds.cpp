@@ -16,7 +16,9 @@ int ghue = 0;
 void led_rainbow()
 {
 //todo copy current led state
-//todo  add check to set all the un animated sectors to their previous state 
+//todo  add check to set all the un animated sectors to their previous state
+//! remove this
+ 
    if (animated_units.unit_0)
    {
        fill_rainbow(leds, UNIT_AMOUNT, ghue);
