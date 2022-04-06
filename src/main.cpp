@@ -11,18 +11,23 @@
 
 #include "main.h"
 
-
+volatile int interruptcounter;
+animated_t animated_units;
 // Define the array of leds
 CRGB leds[NUM_LEDS];
+hw_timer_t *animtimer = NULL;
 
 void setup()
 {
+  animtimer = timerBegin(0, 80, true);
+  timerAttachInterrupt(animtimer,&updateAnim,true);
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(32);
+  FastLED.setBrightness(16);
 }
 
 void loop()
 {
+  led_rainbow();
 
   // leds[0] = CRGB::DarkOrchid;
   // leds[1] = CRGB::Amethyst;
@@ -34,26 +39,9 @@ void loop()
   // leds[7] = CRGB::PaleGreen;
   // leds[8] = CRGB::Chartreuse;
   // leds[9] = CRGB::FairyLight;
-
-  color(leds, ColorSet::Red);
   delay(5000);
-  color(leds, ColorSet::Blue);
-  delay(5000);
-  color(leds, ColorSet::Green);
-  delay(5000);
-  color(leds, ColorSet::Purple);
-  delay(5000);
-  color(leds, ColorSet::Pink);
-  delay(5000);
-  color(leds, ColorSet::Yellow);
-  delay(5000);
-  color(leds, ColorSet::White);
-  delay(5000);
-  color(leds, ColorSet::Orange);
-  delay(5000);
-
-
+  FastLED.show();
 }
 
-// void test(CRGB arrled[NUM_LEDS], ){
-// }
+
+

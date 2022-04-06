@@ -10,108 +10,219 @@
  */
 #include "main.h"
 
+extern CRGB leds[NUM_LEDS];
+extern animated_t animated_units;
+int ghue = 0;
+void led_rainbow()
+{
+//todo copy current led state
+//todo  add check to set all the un animated sectors to their previous state 
+   if (animated_units.unit_0)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT, ghue);
+   }
+   if (animated_units.unit_1)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*2, ghue);
+   }
+   if (animated_units.unit_2)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*3, ghue);
+   }
+   if (animated_units.unit_3)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*4, ghue);
+   }
+   if (animated_units.unit_4)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*5, ghue);
+   }
+   if (animated_units.unit_5)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*6, ghue);
+   }
+   if (animated_units.unit_6)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*7, ghue);
+   }
+    if (animated_units.unit_7)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*8, ghue);
+   }
+    if (animated_units.unit_8)
+   {
+       fill_rainbow(leds, UNIT_AMOUNT*9, ghue);
+   }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // fill_rainbow(leds, UNIT_AMOUNT * unitnumber, ghue);
+    // int unitnum = unitnumber - 1;
+    // for (size_t i = 0; i < UNIT_AMOUNT *unitnum; i++)
+    // {
+    //     leds[i] = CRGB::Black;
+    // }
+    
+}
+
+
+void updateAnim(){
+    ghue++;
+    led_rainbow();
+}
+
 
 /**
  * @brief cycle through preselected colors to determin which are the best
  * 
- * @param arrled 
+ * @param leds 
  * @param CS 
  */
-void color(CRGB arrled[NUM_LEDS], ColorSet CS)
+void color(ColorSet CS)
 {
     if (CS == ColorSet::Red)
     {
-        arrled[1] = CRGB::Crimson;
-        arrled[2] = CRGB::DarkRed;
-        arrled[3] = CRGB::Maroon;
-        arrled[4] = CRGB::Red;
-        arrled[5] = CRGB::Tomato;
+        leds[1] = CRGB::Crimson;
+        leds[2] = CRGB::DarkRed;
+        leds[3] = CRGB::Maroon;
+        leds[4] = CRGB::Red;
+        leds[5] = CRGB::Tomato;
+        leds[6] = CRGB::Black;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
     else if (CS == ColorSet::Blue)
     {
-        arrled[0] = CRGB::Navy;
-        arrled[1] = CRGB::MidnightBlue;
-        arrled[2] = CRGB::RoyalBlue;
-        arrled[3] = CRGB::SteelBlue;
-        arrled[4] = CRGB::MediumBlue;
-        arrled[5] = CRGB::DodgerBlue;
-        arrled[6] = CRGB::DeepSkyBlue;
-        arrled[7] = CRGB::Cyan;
-        arrled[8] = CRGB::DarkBlue;
-        arrled[9] = CRGB::Blue;
+        leds[0] = CRGB::Navy;
+        leds[1] = CRGB::MidnightBlue;
+        leds[2] = CRGB::RoyalBlue;
+        leds[3] = CRGB::SteelBlue;
+        leds[4] = CRGB::MediumBlue;
+        leds[5] = CRGB::DodgerBlue;
+        leds[6] = CRGB::DeepSkyBlue;
+        leds[7] = CRGB::Cyan;
+        leds[8] = CRGB::DarkBlue;
+        leds[9] = CRGB::Blue;
         FastLED.show();
     }
     else if (CS == ColorSet::Green)
     {
-        arrled[0] = CRGB::Chartreuse;
-        arrled[1] = CRGB::Green;
-        arrled[2] = CRGB::GreenYellow;
-        arrled[3] = CRGB::LawnGreen;
-        arrled[4] = CRGB::Lime;
-        arrled[5] = CRGB::LimeGreen;
-        arrled[6] = CRGB::LightGreen;
-        arrled[7] = CRGB::MediumSpringGreen;
-        arrled[8] = CRGB::SpringGreen;
-        arrled[9] = CRGB::YellowGreen;
+        leds[0] = CRGB::Chartreuse;
+        leds[1] = CRGB::Green;
+        leds[2] = CRGB::GreenYellow;
+        leds[3] = CRGB::LawnGreen;
+        leds[4] = CRGB::Lime;
+        leds[5] = CRGB::LimeGreen;
+        leds[6] = CRGB::LightGreen;
+        leds[7] = CRGB::MediumSpringGreen;
+        leds[8] = CRGB::SpringGreen;
+        leds[9] = CRGB::YellowGreen;
         FastLED.show();
     }
     else if (CS == ColorSet::Purple)
     {
-        arrled[0] = CRGB::Amethyst;
-        arrled[1] = CRGB::BlueViolet;
-        arrled[2] = CRGB::DarkMagenta;
-        arrled[3] = CRGB::DarkOrchid;
-        arrled[4] = CRGB::DarkViolet;
-        arrled[5] = CRGB::Indigo;
-        arrled[6] = CRGB::MediumOrchid;
-        arrled[7] = CRGB::MediumPurple;
-        arrled[8] = CRGB::Orchid;
-        arrled[9] = CRGB::Purple;
+        leds[0] = CRGB::Amethyst;
+        leds[1] = CRGB::BlueViolet;
+        leds[2] = CRGB::DarkMagenta;
+        leds[3] = CRGB::DarkOrchid;
+        leds[4] = CRGB::DarkViolet;
+        leds[5] = CRGB::Indigo;
+        leds[6] = CRGB::MediumOrchid;
+        leds[7] = CRGB::MediumPurple;
+        leds[8] = CRGB::Orchid;
+        leds[9] = CRGB::Purple;
         FastLED.show();
     }
     else if (CS == ColorSet::Pink)
     {
-        arrled[0] = CRGB::Fuchsia;
-        arrled[1] = CRGB::HotPink;
-        arrled[2] = CRGB::Magenta;
+        leds[0] = CRGB::Fuchsia;
+        leds[1] = CRGB::HotPink;
+        leds[2] = CRGB::Magenta;
+        leds[3] = CRGB::Black;
+        leds[4] = CRGB::Black;
+        leds[5] = CRGB::Black;
+        leds[6] = CRGB::Black;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
     else if (CS == ColorSet::Yellow)
     {
-        arrled[0] = CRGB::Yellow;
-        arrled[1] = CRGB::YellowGreen;
+        leds[0] = CRGB::Yellow;
+        leds[1] = CRGB::YellowGreen;
+        leds[2] = CRGB::Black;
+        leds[3] = CRGB::Black;
+        leds[4] = CRGB::Black;
+        leds[5] = CRGB::Black;
+        leds[6] = CRGB::Black;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
     else if (CS == ColorSet::White)
     {
-        arrled[0] = CRGB::White;
-        arrled[1] = CRGB::WhiteSmoke;
-        arrled[2] = CRGB::Snow;
-        arrled[3] = CRGB::Seashell;
-        arrled[4] = CRGB::PapayaWhip;
-        arrled[5] = CRGB::Silver;
-        arrled[6] = CRGB::GhostWhite;
+        leds[0] = CRGB::White;
+        leds[1] = CRGB::WhiteSmoke;
+        leds[2] = CRGB::Snow;
+        leds[3] = CRGB::Seashell;
+        leds[4] = CRGB::PapayaWhip;
+        leds[5] = CRGB::Silver;
+        leds[6] = CRGB::GhostWhite;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
     else if (CS == ColorSet::Orange)
     {
-        arrled[0] = CRGB::Orange;
-        arrled[1] = CRGB::DarkOrange;
+        leds[0] = CRGB::Orange;
+        leds[1] = CRGB::DarkOrange;
+        leds[2] = CRGB::Black;
+        leds[3] = CRGB::Black;
+        leds[4] = CRGB::Black;
+        leds[5] = CRGB::Black;
+        leds[6] = CRGB::Black;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
     else
     {
-        arrled[0] = CRGB::Black;
-        arrled[1] = CRGB::Black;
-        arrled[2] = CRGB::Black;
-        arrled[3] = CRGB::Black;
-        arrled[4] = CRGB::Black;
-        arrled[5] = CRGB::Black;
-        arrled[6] = CRGB::Black;
-        arrled[7] = CRGB::Black;
-        arrled[8] = CRGB::Black;
-        arrled[9] = CRGB::Black;
+        leds[0] = CRGB::Black;
+        leds[1] = CRGB::Black;
+        leds[2] = CRGB::Black;
+        leds[3] = CRGB::Black;
+        leds[4] = CRGB::Black;
+        leds[5] = CRGB::Black;
+        leds[6] = CRGB::Black;
+        leds[7] = CRGB::Black;
+        leds[8] = CRGB::Black;
+        leds[9] = CRGB::Black;
         FastLED.show();
     }
 }
@@ -119,15 +230,15 @@ void color(CRGB arrled[NUM_LEDS], ColorSet CS)
 /**
  * @brief Set the Led to color
  *
- * @param arrled
+ * @param leds
  * @param lednum
  * @param color
  */
-bool setLed(CRGB arrled[NUM_LEDS], int lednum, CRGB::HTMLColorCode color)
+bool setLed(int lednum, CRGB::HTMLColorCode color)
 {
     try
     {
-        arrled[lednum] = color;
+        leds[lednum] = color;
     }
     catch (const std::exception &e)
     {
@@ -139,13 +250,13 @@ bool setLed(CRGB arrled[NUM_LEDS], int lednum, CRGB::HTMLColorCode color)
 /**
  * @brief Set the Unit to color
  *
- * @param arrled
+ * @param leds
  * @param lednum
  * @param color
  *
  * @return success or fail
  */
-bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode color)
+bool setUnit(int unitnum, CRGB::HTMLColorCode color)
 {
     try
     {
@@ -167,8 +278,7 @@ bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode color)
  *
  * @return success or fail
  */
-bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode color)
-{
+bool setAll(CRGB::HTMLColorCode color){
     try
     {
 
@@ -192,7 +302,7 @@ bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode color)
  *
  * @return success or fail
  */
-bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode colorarr[UNIT_AMOUNT], Pattern pattern)
+bool setUnit(int unitnum, CRGB::HTMLColorCode color, Pattern pattern)
 {
     try
     {
@@ -216,7 +326,7 @@ bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode colorarr[UN
  *
  * @return success or fail
  */
-bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern)
+bool setAll(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern)
 {
     try
     {

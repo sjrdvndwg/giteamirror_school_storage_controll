@@ -3,6 +3,20 @@
 
 #include "main.h"
 
+
+
+struct animated_t{
+    bool unit_0 = false;
+    bool unit_1 = true;
+    bool unit_2 = true;
+    bool unit_3 = false;
+    bool unit_4 = false;
+    bool unit_5 = false;
+    bool unit_6 = false;
+    bool unit_7 = false;
+    bool unit_8 = false;
+};
+
 typedef enum pattern
 {
     rainbow,
@@ -23,14 +37,18 @@ typedef enum colorset
     Orange
 } ColorSet;
 
-void color(CRGB arrled[NUM_LEDS], ColorSet CS);
+void led_rainbow();
 
-bool setLed(CRGB arrled[NUM_LEDS], int lednum, CRGB::HTMLColorCode color);
+void updateAnim();
 
-bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode color);
-bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode color);
+void color(ColorSet CS);
 
-bool setUnit(CRGB arrled[NUM_LEDS], int unitnum, CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern);
-bool setAll(CRGB arrled[NUM_LEDS], CRGB::HTMLColorCode colorlst[UNIT_AMOUNT],Pattern pattern);
+bool setLed(int lednum, CRGB::HTMLColorCode color);
+
+bool setUnit(CRGB::HTMLColorCode color,int unitnum);
+bool setAll(CRGB::HTMLColorCode color);
+
+bool setUnit(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern,int unitnum);
+bool setAll(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT],Pattern pattern);
 
 #endif
