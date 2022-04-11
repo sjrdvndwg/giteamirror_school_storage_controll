@@ -1,104 +1,26 @@
 /**
  * @file leds.cpp
  * @author Sjoerd van de Wege (svdwege@xs4all.nl)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 23-03-2022
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 #include "main.h"
 
 extern CRGB leds[NUM_LEDS];
 extern animated_t animated_units;
-int ghue = 0;
-void led_rainbow()
-{
-//todo copy current led state
-//todo  add check to set all the un animated sectors to their previous state
-//! remove this
- 
-   if (animated_units.unit_0)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT, ghue);
-   }
-   if (animated_units.unit_1)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*2, ghue);
-   }
-   if (animated_units.unit_2)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*3, ghue);
-   }
-   if (animated_units.unit_3)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*4, ghue);
-   }
-   if (animated_units.unit_4)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*5, ghue);
-   }
-   if (animated_units.unit_5)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*6, ghue);
-   }
-   if (animated_units.unit_6)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*7, ghue);
-   }
-    if (animated_units.unit_7)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*8, ghue);
-   }
-    if (animated_units.unit_8)
-   {
-       fill_rainbow(leds, UNIT_AMOUNT*9, ghue);
-   }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // fill_rainbow(leds, UNIT_AMOUNT * unitnumber, ghue);
-    // int unitnum = unitnumber - 1;
-    // for (size_t i = 0; i < UNIT_AMOUNT *unitnum; i++)
-    // {
-    //     leds[i] = CRGB::Black;
-    // }
-    
-}
-
-
-void updateAnim(){
-    ghue++;
-    led_rainbow();
-}
+volatile extern bool order;
+uint16_t animinc = 0;
 
 
 /**
  * @brief cycle through preselected colors to determin which are the best
- * 
- * @param leds 
- * @param CS 
+ *! @deprecated no longer of use
+ * @param leds
+ * @param CS
  */
 void color(ColorSet CS)
 {
@@ -229,6 +151,42 @@ void color(ColorSet CS)
     }
 }
 
+bool update_relevant(){
+    if (
+           animated_units.unit_0 != NONE 
+        || animated_units.unit_1 != NONE
+        || animated_units.unit_2 != NONE 
+        || animated_units.unit_3 != NONE 
+        || animated_units.unit_4 != NONE 
+        || animated_units.unit_5 != NONE 
+        || animated_units.unit_6 != NONE 
+        || animated_units.unit_7 != NONE 
+        || animated_units.unit_8 != NONE
+        )
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void updateAnim()
+{
+    if (update_relevant())
+    {   
+        if(animinc >= ANIMINC_MAX ){
+            order = true;
+            animinc = 0;
+        }
+        else
+        {
+            animinc++;
+        }
+        
+    }
+}
+
 /**
  * @brief Set the Led to color
  *
@@ -249,6 +207,7 @@ bool setLed(int lednum, CRGB::HTMLColorCode color)
     return true;
 }
 
+
 /**
  * @brief Set the Unit to color
  *
@@ -258,12 +217,15 @@ bool setLed(int lednum, CRGB::HTMLColorCode color)
  *
  * @return success or fail
  */
-bool setUnit(int unitnum, CRGB::HTMLColorCode color)
-{
-    try
+bool setUnit( CRGB color, int unitnum){
+        try
     {
-        // Code to execute here
         // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color
+        int offset = UNIT_AMOUNT * (unitnum - 1);
+        for (size_t i = offset; i < UNIT_AMOUNT; i++)
+        {
+            leds[i] = color;
+        }
     }
     catch (const std::exception &e)
     {
@@ -271,6 +233,37 @@ bool setUnit(int unitnum, CRGB::HTMLColorCode color)
     }
     return true;
 }
+
+
+
+/**
+ * @brief Set the Unit to color
+ *
+ * @param leds
+ * @param lednum
+ * @param color
+ *
+ * @return success or fail
+ */
+bool setUnit( CRGB::HTMLColorCode color,int unitnum)
+{
+    try
+    {
+        // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color
+        int offset = UNIT_AMOUNT * (unitnum - 1);
+        for (size_t i = offset; i < UNIT_AMOUNT; i++)
+        {
+            leds[i] = color;
+        }
+    }
+    catch (const std::exception &e)
+    {
+        return false;
+    }
+    return true;
+}
+
+
 
 /**
  * @brief Set the All leds to color
@@ -280,61 +273,15 @@ bool setUnit(int unitnum, CRGB::HTMLColorCode color)
  *
  * @return success or fail
  */
-bool setAll(CRGB::HTMLColorCode color){
+bool setAll(CRGB::HTMLColorCode color)
+{
     try
     {
-
-        // Code to execute here
         // set all leds to the specified color
-    }
-    catch (const std::exception &e)
-    {
-        return false;
-    }
-    return true;
-}
-
-/**
- * @brief Set the Unit to display pattern with colors
- *
- * @param arrled
- * @param lednum
- * @param colorarr
- * @param pattern
- *
- * @return success or fail
- */
-bool setUnit(int unitnum, CRGB::HTMLColorCode color, Pattern pattern)
-{
-    try
-    {
-        // Code to execute here
-        // offset the leds in the array by UNIT_AMOUNT*(unitnum-1)
-        // set the units leds to display the pattern
-    }
-    catch (const std::exception &e)
-    {
-        return false;
-    }
-    return true;
-}
-
-/**
- * @brief Set the All leds to display pattern with colors
- *
- * @param arrled
- * @param colorlst
- * @param pattern
- *
- * @return success or fail
- */
-bool setAll(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern)
-{
-    try
-    {
-        // Code to execute here
-
-        // set all leds to display the pattern given
+        for (size_t i = 0; i < NUM_LEDS; i++)
+        {
+            leds[i] = color;
+        }
     }
     catch (const std::exception &e)
     {

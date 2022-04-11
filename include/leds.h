@@ -5,25 +5,50 @@
 
 
 
-struct animated_t{
-    bool unit_0 = false;
-    bool unit_1 = true;
-    bool unit_2 = true;
-    bool unit_3 = false;
-    bool unit_4 = false;
-    bool unit_5 = false;
-    bool unit_6 = false;
-    bool unit_7 = false;
-    bool unit_8 = false;
-};
-
 typedef enum pattern
 {
-    rainbow,
-    pulse,
-    cycle,
-    noise
+    NONE,
+    Flash,
+    Pulse,
+
 } Pattern;
+    // Cycle,
+    // Noise
+struct animated_t{
+    Pattern unit_0 = NONE;
+    Pattern unit_1 = Flash;
+    Pattern unit_2 = Flash;
+    Pattern unit_3 = NONE;
+    Pattern unit_4 = NONE;
+    Pattern unit_5 = NONE;
+    Pattern unit_6 = NONE;
+    Pattern unit_7 = NONE;
+    Pattern unit_8 = NONE;
+};
+struct Anim_Offset_t{
+    int offset_0 = 0;
+    int offset_1 = 0;
+    int offset_2 = 0;
+    int offset_3 = 0;
+    int offset_4 = 0;
+    int offset_5 = 0;
+    int offset_6 = 0;
+    int offset_7 = 0;
+    int offset_8 = 0;
+};
+
+
+struct unit_colors_t {
+    CRGB unit0;
+    CRGB unit1;
+    CRGB unit2;
+    CRGB unit3;
+    CRGB unit4;
+    CRGB unit5;
+    CRGB unit6;
+    CRGB unit7;
+    CRGB unit8;
+};
 
 typedef enum colorset
 {
@@ -37,18 +62,17 @@ typedef enum colorset
     Orange
 } ColorSet;
 
-void led_rainbow();
-
-void updateAnim();
-
 void color(ColorSet CS);
+void updateAnim(void);
 
 bool setLed(int lednum, CRGB::HTMLColorCode color);
 
-bool setUnit(CRGB::HTMLColorCode color,int unitnum);
-bool setAll(CRGB::HTMLColorCode color);
 
-bool setUnit(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern,int unitnum);
+bool setUnit(CRGB color, int unitnum);
+bool setUnit(CRGB::HTMLColorCode color, int unitnum);
+// bool setUnit(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT], Pattern pattern,int unitnum);
+
+bool setAll(CRGB::HTMLColorCode color);
 bool setAll(CRGB::HTMLColorCode colorlst[UNIT_AMOUNT],Pattern pattern);
 
 #endif
