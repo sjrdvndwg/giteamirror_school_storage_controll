@@ -17,8 +17,8 @@ uint16_t animinc = 0;
 
 
 /**
+ * @deprecated no longer of use
  * @brief cycle through preselected colors to determin which are the best
- *! @deprecated no longer of use
  * @param leds
  * @param CS
  */
@@ -173,6 +173,7 @@ bool update_relevant(){
 
 void updateAnim()
 {
+    Serial.println("isr");
     if (update_relevant())
     {   
         if(animinc >= ANIMINC_MAX ){

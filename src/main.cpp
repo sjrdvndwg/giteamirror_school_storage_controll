@@ -25,38 +25,65 @@ TaskHandle_t MAIN_LOOP;
 TaskHandle_t update_LOOP;
 
 WebServer server(80);
-
+void test(){
+  Serial.println("test");
+}
 void setup()
 {
   Serial.begin(115200);
+  connectToWiFi();
+  // setupRoutes();
+  unsigned short clkdiv = 2;
 
-  animtimer = timerBegin(0, 240, true);
-  timerAttachInterrupt(animtimer, &updateAnim, true);
+  animtimer = timerBegin(0, clkdiv, true);
+  timerAttachInterrupt(animtimer, test, false);
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
-  xTaskCreatePinnedToCore(_Main_Loop, "Mainloop", 10000, NULL, 0, &MAIN_LOOP, 0);
+  // xTaskCreatePinnedToCore(_Main_Loop, "Mainloop", 10000, NULL, 0, &MAIN_LOOP, 0);
   xTaskCreatePinnedToCore(_update_Loop, "updateloop", 10000, NULL, 0, &update_LOOP, 1);
 }
-void loop() {}
-
-void _Main_Loop(void *parameter)
-{
+void loop() {
+  sei();
+  Serial.println("mainlp");
   for (;;)
   {
 
     if (!order)
     {
       FastLED.show();
+      server.handleClient();
+
     }
     else
     {
+      
+    }
+  }}
 
+void _Main_Loop(void *parameter)
+{
+  sei();
+  Serial.println("mainlp");
+  for (;;)
+  {
+
+    if (!order)
+    {
+      FastLED.show();
+      server.handleClient();
+
+    }
+    else
+    {
+      
     }
   }
 }
 
 void _update_Loop(void *parameters)
 {
+  sei();
+  Serial.println("auxlp");
   for (;;)
   {
     if (order)
