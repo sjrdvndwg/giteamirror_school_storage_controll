@@ -16,12 +16,12 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
-#include <BLEDevice.h>
-#include <BLEUtils.h>
-#include <BLEServer.h>
-#include <BLE2902.h>
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ArduinoJson.h>
 
 #include "leds.h"
+#include "api.h"
 
 void _Main_Loop(void *parameter);
 void _update_Loop(void *parameters);
