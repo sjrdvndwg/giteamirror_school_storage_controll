@@ -27,18 +27,18 @@ void setup()
 
 void loop()
 {
-  led_rainbow();
+  // led_rainbow();
 
-  // leds[0] = CRGB::DarkOrchid;
-  // leds[1] = CRGB::Amethyst;
-  // leds[2] = CRGB::BlueViolet;
-  // leds[3] = CRGB::CornflowerBlue;
-  // leds[4] = CRGB::LightSkyBlue;
-  // leds[5] = CRGB::DarkTurquoise;
-  // leds[6] = CRGB::MediumTurquoise;
-  // leds[7] = CRGB::PaleGreen;
-  // leds[8] = CRGB::Chartreuse;
-  // leds[9] = CRGB::FairyLight;
+  leds[0] = CRGB::DarkOrchid;
+  leds[1] = CRGB::Amethyst;
+  leds[2] = CRGB::BlueViolet;
+  leds[3] = CRGB::CornflowerBlue;
+  leds[4] = CRGB::LightSkyBlue;
+  leds[5] = CRGB::DarkTurquoise;
+  leds[6] = CRGB::MediumTurquoise;
+  leds[7] = CRGB::PaleGreen;
+  leds[8] = CRGB::Chartreuse;
+  leds[9] = CRGB::FairyLight;
   delay(5000);
   FastLED.show();
 }
