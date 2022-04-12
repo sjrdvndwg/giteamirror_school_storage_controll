@@ -2,7 +2,7 @@
 #define MAIN_H
 
 // How many leds in your strip?
-#define NUM_LEDS 27
+#define NUM_LEDS 10
 #define UNIT_AMOUNT 5
 #define TOTAL_AMOUNT 9*UNIT_AMOUNT
 
