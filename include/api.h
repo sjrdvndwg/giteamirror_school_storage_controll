@@ -3,9 +3,9 @@
 
 struct apidata_t{
     int Type = 0;
-    int R = 0;
-    int G = 0;
-    int B = 0;
+    uint8_t R = 0;
+    uint8_t G = 0;
+    uint8_t B = 0;
 };
 
 /**
