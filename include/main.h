@@ -15,9 +15,12 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
+#include <ESPTelnet.h>
+
 
 #include "leds.h"
 #include "api.h"
+#include "debug.h"
 
 
 #define DATA_PIN 23
