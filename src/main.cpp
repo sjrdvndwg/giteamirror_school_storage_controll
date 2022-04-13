@@ -32,13 +32,11 @@ void test()
 void setup()
 {
   Serial.begin(115200);
-  Serial.println("sreia");
   connectToWiFi();
   // Serial.println(getCpuFrequencyMhz());
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
   Serial.println("post led setup");
-
 }
 void loop()
 {
@@ -48,8 +46,12 @@ void loop()
   if (order)
   {
     // setUnit(CRGB::Amethyst, 1);
-    // updateLeds();
-    setAll(allcolor);
+    updateLeds();
+    // setAll(allcolor);
+    // setUnit(allcolor, 2);
+    // setUnit(allcolor, 0);
+    // setUnit(allcolor, 9);
+    // setUnit(allcolor, 8);
     FastLED.show();
     Serial.print("log\n");
     order = false;

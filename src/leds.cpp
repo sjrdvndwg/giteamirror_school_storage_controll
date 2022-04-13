@@ -181,33 +181,29 @@ void updateLeds()
         {
             if (offsett.offset_0 == 0)
             {
-                //if off turn on get color from var reset the offset
-                setUnit(colors.unit0, 1);
+                Serial.println("on0");
+                // if off turn on get color from var reset the offset
+                setUnit(colors.unit0, 0);
                 offsett.offset_0 = 1;
             }
             else if (offsett.offset_0 == 1)
             {
-                //if on turn off after storing the color
+                Serial.println("off0");
+                // if on turn off after storing the color
                 colors.unit0 = leds[0];
-                setUnit(CRGB::Black, 1);
+                setUnit(CRGB::Black, 0);
 
                 offsett.offset_0 = 0;
             }
-
-            order = false;
         }
         else if (animated_units.unit_0 == Pulse)
         {
             // todo save current color and use CRGB::addto and subtract from to fade it in and out
-
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 1);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit0, 0);
     }
 
     if (animated_units.unit_1 != NONE)
@@ -216,27 +212,25 @@ void updateLeds()
         {
             if (offsett.offset_1 == 0)
             {
-                setUnit(colors.unit1, 2);
+                Serial.println("on1");
+                setUnit(colors.unit1, 1);
                 offsett.offset_1 = 1;
             }
             else if (offsett.offset_1 == 1)
             {
+                Serial.println("off1");
                 colors.unit1 = leds[(UNIT_AMOUNT * 1)];
-                setUnit(CRGB::Black, 2);
+                setUnit(CRGB::Black, 1);
                 offsett.offset_1 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_1 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 2);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit1, 1);
     }
 
     if (animated_units.unit_2 != NONE)
@@ -245,27 +239,25 @@ void updateLeds()
         {
             if (offsett.offset_2 == 0)
             {
-                setUnit(colors.unit2, 3);
+                Serial.println("on2");
+                setUnit(colors.unit2, 2);
                 offsett.offset_2 = 1;
             }
             else if (offsett.offset_2 == 1)
             {
+                Serial.println("off2");
                 colors.unit2 = leds[(UNIT_AMOUNT * 2)];
-                setUnit(CRGB::Black, 3);
+                setUnit(CRGB::Black, 2);
                 offsett.offset_2 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_2 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 3);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit2, 2);
     }
 
     if (animated_units.unit_3 != NONE)
@@ -274,27 +266,25 @@ void updateLeds()
         {
             if (offsett.offset_3 == 0)
             {
-                setUnit(colors.unit3, 4);
+                Serial.println("on3");
+                setUnit(colors.unit3, 3);
                 offsett.offset_3 = 1;
             }
             else if (offsett.offset_3 == 1)
             {
+                Serial.println("off3");
                 colors.unit3 = leds[(UNIT_AMOUNT * 3)];
-                setUnit(CRGB::Black, 4);
+                setUnit(CRGB::Black, 3);
                 offsett.offset_3 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_3 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 4);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit3, 3);
     }
 
     if (animated_units.unit_4 != NONE)
@@ -303,27 +293,26 @@ void updateLeds()
         {
             if (offsett.offset_4 == 0)
             {
-                setUnit(colors.unit4, 5);
+                Serial.println("on4");
+                setUnit(colors.unit4, 4);
                 offsett.offset_4 = 1;
             }
             else if (offsett.offset_4 == 1)
             {
+                Serial.println("off4");
+
                 colors.unit4 = leds[(UNIT_AMOUNT * 4)];
-                setUnit(CRGB::Black, 5);
+                setUnit(CRGB::Black, 4);
                 offsett.offset_4 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_4 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 5);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit4, 4);
     }
 
     if (animated_units.unit_5 != NONE)
@@ -332,27 +321,25 @@ void updateLeds()
         {
             if (offsett.offset_5 == 0)
             {
-                setUnit(colors.unit5, 6);
+                Serial.println("on5");
+                setUnit(colors.unit5, 5);
                 offsett.offset_5 = 1;
             }
             else if (offsett.offset_5 == 1)
             {
+                Serial.println("off5");
                 colors.unit5 = leds[(UNIT_AMOUNT * 5)];
-                setUnit(CRGB::Black, 6);
+                setUnit(CRGB::Black, 5);
                 offsett.offset_5 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_5 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 6);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit5, 5);
     }
 
     if (animated_units.unit_6 != NONE)
@@ -361,27 +348,25 @@ void updateLeds()
         {
             if (offsett.offset_6 == 0)
             {
-                setUnit(colors.unit6, 7);
+                Serial.println("on6");
+                setUnit(colors.unit6, 6);
                 offsett.offset_6 = 1;
             }
             else if (offsett.offset_6 == 1)
             {
+                Serial.println("off6");
                 colors.unit6 = leds[(UNIT_AMOUNT * 6)];
-                setUnit(CRGB::Black, 7);
+                setUnit(CRGB::Black, 6);
                 offsett.offset_6 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_6 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 7);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit6, 6);
     }
 
     if (animated_units.unit_7 != NONE)
@@ -390,27 +375,25 @@ void updateLeds()
         {
             if (offsett.offset_7 == 0)
             {
-                setUnit(colors.unit7, 8);
+                Serial.println("on7");
+                setUnit(colors.unit7, 7);
                 offsett.offset_7 = 1;
             }
             else if (offsett.offset_7 == 1)
             {
+                Serial.println("off7");
                 colors.unit7 = leds[(UNIT_AMOUNT * 7)];
-                setUnit(CRGB::Black, 8);
+                setUnit(CRGB::Black, 7);
                 offsett.offset_7 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_7 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 8);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit7, 7);
     }
 
     if (animated_units.unit_8 != NONE)
@@ -419,27 +402,25 @@ void updateLeds()
         {
             if (offsett.offset_8 == 0)
             {
-                setUnit(colors.unit8, 9);
+                Serial.println("on8");
+                setUnit(colors.unit8, 8);
                 offsett.offset_8 = 1;
             }
             else if (offsett.offset_8 == 1)
             {
+                Serial.println("off8");
                 colors.unit8 = leds[(UNIT_AMOUNT * 8)];
-                setUnit(CRGB::Black, 9);
+                setUnit(CRGB::Black, 8);
                 offsett.offset_8 = 0;
             }
-            order = false;
         }
         else if (animated_units.unit_8 == Pulse)
         {
-            order = false;
         }
-        else
-        {
-            setUnit(colors.unit0, 9);
-            order = false;
-        }
-        order = false;
+    }
+    else
+    {
+        setUnit(colors.unit8, 8);
     }
 }
 
@@ -455,18 +436,52 @@ void updateLeds()
 bool setUnit(CRGB color, int unitnum)
 {
 
-    int offset;
-    if (unitnum == 0)
+    int offset = 0;
+    switch (unitnum)
     {
+    case 0:
         offset = 0;
+        break;
+    case 1:
+        offset = UNIT_AMOUNT * 1;
+        break;
+    case 2:
+        offset = UNIT_AMOUNT * 2;
+        break;
+    case 3:
+        offset = UNIT_AMOUNT * 3;
+        break;
+    case 4:
+        offset = UNIT_AMOUNT * 4;
+        break;
+    case 5:
+        offset = UNIT_AMOUNT * 5;
+        break;
+    case 6:
+        offset = UNIT_AMOUNT * 6;
+        break;
+    case 7:
+        offset = UNIT_AMOUNT * 7;
+        break;
+    case 8:
+        offset = UNIT_AMOUNT * 8;
+        break;
+    default:
+        break;
     }
-    else{
-        offset = UNIT_AMOUNT * (unitnum - 1);
-    }
+
+    // if (unitnum == 0)
+    // {
+    //     offset = 0;
+    // }
+    // else
+    // {
+    //     offset = UNIT_AMOUNT * (unitnum - 1);
+    // }
 
     // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color
     // int offset = UNIT_AMOUNT * (unitnum - 1);
-    for (size_t i = offset-1; i < UNIT_AMOUNT-1; i++)
+    for (size_t i = offset; i < (offset + UNIT_AMOUNT); i++)
     {
         leds[i] = color;
     }
@@ -484,17 +499,53 @@ bool setUnit(CRGB color, int unitnum)
  */
 bool setUnit(CRGB::HTMLColorCode color, int unitnum)
 {
-    int offset;
-    if (unitnum == 0)
+
+    int offset = 0;
+    switch (unitnum)
     {
+    case 0:
         offset = 0;
+        break;
+    case 1:
+        offset = UNIT_AMOUNT * 1;
+        break;
+    case 2:
+        offset = UNIT_AMOUNT * 2;
+        break;
+    case 3:
+        offset = UNIT_AMOUNT * 3;
+        break;
+    case 4:
+        offset = UNIT_AMOUNT * 4;
+        break;
+    case 5:
+        offset = UNIT_AMOUNT * 5;
+        break;
+    case 6:
+        offset = UNIT_AMOUNT * 6;
+        break;
+    case 7:
+        offset = UNIT_AMOUNT * 7;
+        break;
+    case 8:
+        offset = UNIT_AMOUNT * 8;
+        break;
+    default:
+        break;
     }
-    else{
-        offset = UNIT_AMOUNT * (unitnum - 1);
-    }
-    
+
+    // if (unitnum == 0)
+    // {
+    //     offset = 0;
+    // }
+    // else
+    // {
+    //     offset = UNIT_AMOUNT * (unitnum - 1);
+    // }
+
     // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color
-    for (size_t i = offset-1; i < UNIT_AMOUNT-1; i++)
+    // int offset = UNIT_AMOUNT * (unitnum - 1);
+    for (size_t i = offset; i < (offset + UNIT_AMOUNT); i++)
     {
         leds[i] = color;
     }

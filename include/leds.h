@@ -16,8 +16,8 @@ typedef enum pattern
     // Noise
 struct animated_t{
     Pattern unit_0 = NONE;
-    Pattern unit_1 = Flash;
-    Pattern unit_2 = Flash;
+    Pattern unit_1 = NONE;
+    Pattern unit_2 = NONE;
     Pattern unit_3 = NONE;
     Pattern unit_4 = NONE;
     Pattern unit_5 = NONE;
