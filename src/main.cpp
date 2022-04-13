@@ -16,6 +16,7 @@ animated_t animated_units;
 Anim_Offset_t offsett;
 unit_colors_t colors;
 volatile bool order = false;
+bool is_Debugging;
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -25,15 +26,17 @@ hw_timer_t *animtimer = NULL;
 // TaskHandle_t update_LOOP;
 CRGB allcolor;
 WebServer server(80);
-void test()
-{
-  Serial.println("test");
-}
+ESPTelnet telnet;
+
+
+
 void setup()
 {
   Serial.begin(115200);
+
   connectToWiFi();
-  // Serial.println(getCpuFrequencyMhz());
+  setupTelnet();
+
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
   Serial.println("post led setup");
@@ -42,18 +45,20 @@ void loop()
 {
   // Serial.println("loop");
   server.handleClient();
+  telnet.loop();
   // setAll(1);
   if (order)
   {
     // setUnit(CRGB::Amethyst, 1);
     updateLeds();
+    debugprint("updated leds");
     // setAll(allcolor);
     // setUnit(allcolor, 2);
     // setUnit(allcolor, 0);
     // setUnit(allcolor, 9);
     // setUnit(allcolor, 8);
     FastLED.show();
-    Serial.print("log\n");
+    debugprint("displaying leds");
     order = false;
   }
   
