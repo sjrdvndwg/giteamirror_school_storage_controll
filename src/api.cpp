@@ -11,23 +11,12 @@ extern unit_colors_t colors;
 extern volatile bool order;
 extern CRGB allcolor;
 
-// wifiCreds auth= {"Robot", "Robot-pass"};
 
-// IP Address details
-// IPAddress local_ip(192, 168, 1  , 1);
-// IPAddress gateway(192, 168, 1, 1);
-// IPAddress subnet(255, 255, 255, 0);
 
 StaticJsonDocument<JSONDOCSIZE> jsonDocument;
-// char buffer[512];
 
 void connectToWiFi()
 {
-
-    // WiFi.softAP(auth.ssid, auth.pass);
-    // WiFi.softAPConfig(local_ip, gateway, subnet);
-    // WiFi.hostname("ROBOT");
-
     Serial.print("Connecting to ");
     Serial.println(SSID);
 
@@ -36,8 +25,7 @@ void connectToWiFi()
     while (!WiFi.isConnected())
     {
         Serial.print(".");
-        delay(50);
-        // we can even make the ESP32 to sleep
+        delay(100);
     }
 
     Serial.print("Connected. IP: ");
@@ -99,11 +87,6 @@ void _parseconst()
     parseddata.B = jsonDocument["B"];
     uint32_t thing = rgbtohex(parseddata.R, parseddata.G, parseddata.B);
     allcolor = rgbtohex(parseddata.R, parseddata.G, parseddata.B);
-    // Serial.println(parseddata.R);
-    // Serial.println(parseddata.G);
-    // Serial.println(parseddata.B);
-    // Serial.println(CRGB(parseddata.R, parseddata.G, parseddata.B));
-    // Serial.println(rgbtohex(parseddata.R, parseddata.G, parseddata.B));
     switch (segment)
     {
     case 0:
@@ -253,7 +236,7 @@ void _parse__MultiSeg()
 {
     server.send(200, "application/json", "{}");
     Serial.println("MultiSeg");
-    
+
     if (server.hasArg("plain") == false)
     {
         return;
@@ -272,7 +255,6 @@ void _parse__MultiSeg()
     animated_units.unit_7 = _get_Anim(jsonDocument["seg7T"]);
     animated_units.unit_8 = _get_Anim(jsonDocument["seg8T"]);
 
-
     colors.unit0 = rgbtohex(jsonDocument["seg0r"], jsonDocument["seg0g"], jsonDocument["seg0b"]);
     colors.unit1 = rgbtohex(jsonDocument["seg1r"], jsonDocument["seg1g"], jsonDocument["seg1b"]);
     colors.unit2 = rgbtohex(jsonDocument["seg2r"], jsonDocument["seg2g"], jsonDocument["seg2b"]);
@@ -282,7 +264,6 @@ void _parse__MultiSeg()
     colors.unit6 = rgbtohex(jsonDocument["seg6r"], jsonDocument["seg6g"], jsonDocument["seg6b"]);
     colors.unit7 = rgbtohex(jsonDocument["seg7r"], jsonDocument["seg7g"], jsonDocument["seg7b"]);
     colors.unit8 = rgbtohex(jsonDocument["seg8r"], jsonDocument["seg8g"], jsonDocument["seg8b"]);
-
 
     order = true;
 }

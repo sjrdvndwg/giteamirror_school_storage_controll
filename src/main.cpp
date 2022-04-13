@@ -28,39 +28,27 @@ CRGB allcolor;
 WebServer server(80);
 ESPTelnet telnet;
 
-
-
 void setup()
 {
   Serial.begin(115200);
 
   connectToWiFi();
   setupTelnet();
-
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
   Serial.println("post led setup");
 }
 void loop()
 {
-  // Serial.println("loop");
   server.handleClient();
   telnet.loop();
-  // setAll(1);
   if (order)
   {
-    // setUnit(CRGB::Amethyst, 1);
     updateLeds();
-    debugprint("updated leds");
-    // setAll(allcolor);
-    // setUnit(allcolor, 2);
-    // setUnit(allcolor, 0);
-    // setUnit(allcolor, 9);
-    // setUnit(allcolor, 8);
+    print_debug("updated leds");
+
     FastLED.show();
-    debugprint("displaying leds");
+    print_debug("displaying leds");
     order = false;
   }
-  
- 
 }
