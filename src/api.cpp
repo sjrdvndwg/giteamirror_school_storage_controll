@@ -15,6 +15,10 @@ extern CRGB allcolor;
 
 StaticJsonDocument<JSONDOCSIZE> jsonDocument;
 
+/**
+ * @brief setup wifi connections
+ * 
+ */
 void connectToWiFi()
 {
     Serial.print("Connecting to ");
@@ -33,6 +37,10 @@ void connectToWiFi()
     setupRoutes();
 }
 
+/**
+ * @brief setup routes
+ * 
+ */
 void setupRoutes()
 {
     server.on("/", HTTP_POST, _parseconst);
@@ -40,7 +48,15 @@ void setupRoutes()
     server.begin();
 }
 
-uint32_t rgbtohex(uint8_t r, uint8_t g, uint8_t b)
+/**
+ * @brief create proper uint24 value from r, g and b component
+ * 
+ * @param r 
+ * @param g 
+ * @param b 
+ * @return uint32_t 
+ */
+uint32_t _rgbtohex(uint8_t r, uint8_t g, uint8_t b)
 {
 
     uint32_t returnval = 0;
@@ -49,6 +65,12 @@ uint32_t rgbtohex(uint8_t r, uint8_t g, uint8_t b)
     return returnval;
 }
 
+/**
+ * @brief get anim type from number
+ * 
+ * @param animnumger 
+ * @return Pattern 
+ */
 Pattern _get_Anim(int animnumger)
 {
     switch (animnumger)
@@ -69,11 +91,16 @@ Pattern _get_Anim(int animnumger)
     }
 }
 
+
+/**
+ * @brief parse single segment
+ * 
+ */
 void _parseconst()
 {
     server.send(200, "application/json", "{}");
 
-    Serial.println("parsing");
+    print_debug("parsing singel segment");
     if (server.hasArg("plain") == false)
         return;
 
@@ -85,8 +112,8 @@ void _parseconst()
     parseddata.R = jsonDocument["R"];
     parseddata.G = jsonDocument["G"];
     parseddata.B = jsonDocument["B"];
-    uint32_t thing = rgbtohex(parseddata.R, parseddata.G, parseddata.B);
-    allcolor = rgbtohex(parseddata.R, parseddata.G, parseddata.B);
+    uint32_t thing = _rgbtohex(parseddata.R, parseddata.G, parseddata.B);
+    allcolor = _rgbtohex(parseddata.R, parseddata.G, parseddata.B);
     switch (segment)
     {
     case 0:
@@ -232,10 +259,14 @@ void _parseconst()
     order = true;
 }
 
+/**
+ * @brief set all segments to the specified color in the json doc
+ * 
+ */
 void _parse__MultiSeg()
 {
     server.send(200, "application/json", "{}");
-    Serial.println("MultiSeg");
+    print_debug("parsing multisegment data");
 
     if (server.hasArg("plain") == false)
     {
@@ -243,6 +274,7 @@ void _parse__MultiSeg()
     }
 
     String body = server.arg("plain");
+    print_debug(body);
     deserializeJson(jsonDocument, body);
 
     animated_units.unit_0 = _get_Anim(jsonDocument["seg0T"]);
@@ -255,15 +287,15 @@ void _parse__MultiSeg()
     animated_units.unit_7 = _get_Anim(jsonDocument["seg7T"]);
     animated_units.unit_8 = _get_Anim(jsonDocument["seg8T"]);
 
-    colors.unit0 = rgbtohex(jsonDocument["seg0r"], jsonDocument["seg0g"], jsonDocument["seg0b"]);
-    colors.unit1 = rgbtohex(jsonDocument["seg1r"], jsonDocument["seg1g"], jsonDocument["seg1b"]);
-    colors.unit2 = rgbtohex(jsonDocument["seg2r"], jsonDocument["seg2g"], jsonDocument["seg2b"]);
-    colors.unit3 = rgbtohex(jsonDocument["seg3r"], jsonDocument["seg3g"], jsonDocument["seg3b"]);
-    colors.unit4 = rgbtohex(jsonDocument["seg4r"], jsonDocument["seg4g"], jsonDocument["seg4b"]);
-    colors.unit5 = rgbtohex(jsonDocument["seg5r"], jsonDocument["seg5g"], jsonDocument["seg5b"]);
-    colors.unit6 = rgbtohex(jsonDocument["seg6r"], jsonDocument["seg6g"], jsonDocument["seg6b"]);
-    colors.unit7 = rgbtohex(jsonDocument["seg7r"], jsonDocument["seg7g"], jsonDocument["seg7b"]);
-    colors.unit8 = rgbtohex(jsonDocument["seg8r"], jsonDocument["seg8g"], jsonDocument["seg8b"]);
+    colors.unit0 = _rgbtohex(jsonDocument["seg0r"], jsonDocument["seg0g"], jsonDocument["seg0b"]);
+    colors.unit1 = _rgbtohex(jsonDocument["seg1r"], jsonDocument["seg1g"], jsonDocument["seg1b"]);
+    colors.unit2 = _rgbtohex(jsonDocument["seg2r"], jsonDocument["seg2g"], jsonDocument["seg2b"]);
+    colors.unit3 = _rgbtohex(jsonDocument["seg3r"], jsonDocument["seg3g"], jsonDocument["seg3b"]);
+    colors.unit4 = _rgbtohex(jsonDocument["seg4r"], jsonDocument["seg4g"], jsonDocument["seg4b"]);
+    colors.unit5 = _rgbtohex(jsonDocument["seg5r"], jsonDocument["seg5g"], jsonDocument["seg5b"]);
+    colors.unit6 = _rgbtohex(jsonDocument["seg6r"], jsonDocument["seg6g"], jsonDocument["seg6b"]);
+    colors.unit7 = _rgbtohex(jsonDocument["seg7r"], jsonDocument["seg7g"], jsonDocument["seg7b"]);
+    colors.unit8 = _rgbtohex(jsonDocument["seg8r"], jsonDocument["seg8g"], jsonDocument["seg8b"]);
 
     order = true;
 }
