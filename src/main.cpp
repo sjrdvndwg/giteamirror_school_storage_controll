@@ -34,7 +34,8 @@ void setup()
 
   connectToWiFi();
   setupTelnet();
-
+  setup_relays();
+  
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
 

@@ -13,5 +13,6 @@ void setupRoutes();
 
 void _parseconst();
 void _parse__MultiSeg();
+void _parse_relay();
 
 #endif // API_H

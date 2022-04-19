@@ -20,6 +20,7 @@
 #include "leds.h"
 #include "api.h"
 #include "debug.h"
+#include "relay.h"
 
 #define DATA_PIN 23
 #endif

@@ -2,8 +2,8 @@
 
 extern WebServer server;
 extern CRGB leds[NUM_LEDS];
-const char *SSID = "VoorhuisGuest";
-const char *PWD = "voorhuiswlangast";
+const char *SSID = "MAAKHUIS";
+const char *PWD = "123456789";
 
 apidata_t parseddata;
 extern animated_t animated_units;
@@ -11,13 +11,11 @@ extern unit_colors_t colors;
 extern volatile bool order;
 extern CRGB allcolor;
 
-
-
 StaticJsonDocument<JSONDOCSIZE> jsonDocument;
 
 /**
  * @brief setup wifi connections
- * 
+ *
  */
 void connectToWiFi()
 {
@@ -39,22 +37,23 @@ void connectToWiFi()
 
 /**
  * @brief setup routes
- * 
+ *
  */
 void setupRoutes()
 {
     server.on("/", HTTP_POST, _parseconst);
     server.on("/multiseg/", HTTP_POST, _parse__MultiSeg);
+    server.on("/relay/", HTTP_POST, _parse_relay);
     server.begin();
 }
 
 /**
  * @brief create proper uint24 value from r, g and b component
- * 
- * @param r 
- * @param g 
- * @param b 
- * @return uint32_t 
+ *
+ * @param r
+ * @param g
+ * @param b
+ * @return uint32_t
  */
 uint32_t _rgbtohex(uint8_t r, uint8_t g, uint8_t b)
 {
@@ -67,9 +66,9 @@ uint32_t _rgbtohex(uint8_t r, uint8_t g, uint8_t b)
 
 /**
  * @brief get anim type from number
- * 
- * @param animnumger 
- * @return Pattern 
+ *
+ * @param animnumger
+ * @return Pattern
  */
 Pattern _get_Anim(int animnumger)
 {
@@ -91,10 +90,9 @@ Pattern _get_Anim(int animnumger)
     }
 }
 
-
 /**
  * @brief parse single segment
- * 
+ *
  */
 void _parseconst()
 {
@@ -261,7 +259,7 @@ void _parseconst()
 
 /**
  * @brief set all segments to the specified color in the json doc
- * 
+ *
  */
 void _parse__MultiSeg()
 {
@@ -298,4 +296,52 @@ void _parse__MultiSeg()
     colors.unit8 = _rgbtohex(jsonDocument["seg8r"], jsonDocument["seg8g"], jsonDocument["seg8b"]);
 
     order = true;
+}
+
+void _parse_relay()
+{
+    server.send(200, "application/json", "{}");
+
+    print_debug("parsing singel segment");
+    if (server.hasArg("plain") == false)
+        return;
+
+    String body = server.arg("plain");
+    print_debug(body);
+    deserializeJson(jsonDocument, body);
+
+    int relay = jsonDocument["relay"];
+    switch (relay)
+    {
+    case 0:
+        ctl_relay(RELAY_0);
+        break;
+    case 1:
+        ctl_relay(RELAY_1);
+        break;
+    case 2:
+        ctl_relay(RELAY_0);
+        break;
+    case 3:
+        ctl_relay(RELAY_3);
+        break;
+    case 4:
+        ctl_relay(RELAY_4);
+        break;
+    case 5:
+        ctl_relay(RELAY_5);
+        break;
+    case 6:
+        ctl_relay(RELAY_6);
+        break;
+    case 7:
+        ctl_relay(RELAY_7);
+        break;
+    case 8:
+        ctl_relay(RELAY_8);
+        break;
+
+    default:
+        break;
+    }
 }
