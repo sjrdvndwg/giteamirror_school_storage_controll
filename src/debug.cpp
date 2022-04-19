@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <string.h>
 extern ESPTelnet telnet;
 extern bool is_Debugging;
 
@@ -67,12 +67,12 @@ void disconnectedClient(String ip)
  */
 void debugdata(String data)
 {
-    // telnet.println(data.startsWith("bye"));
-    // if (data.startsWith("bye"))
-    // {
-        // /* code */
-    // }
-    
+    telnet.print("datais:");
+    telnet.print(data);
+    telnet.println(data.startsWith("bye"));
+    if(strncmp("bye", data.c_str(),3)==0){
+        telnet.print("fuck you");
+    }
 }
 
 
