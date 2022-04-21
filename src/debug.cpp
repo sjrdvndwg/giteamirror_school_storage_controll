@@ -2,6 +2,8 @@
 
 extern ESPTelnet telnet;
 extern bool is_Debugging;
+char printqueue[32][128];
+uint8_t printqueue_pos = 0;
 
 void print_debug(const char *data)
 {
@@ -19,20 +21,47 @@ void print_debug(const String data)
     }
 }
 
-/**
- * @brief calback func
- * 
- * @param ip 
- */
-void connectedClient(String ip)
+void _sanitize_queue()
 {
-    is_Debugging = true;
+    for (size_t i = 0; i < printqueue_pos; i++)
+    {
+        memset(printqueue[printqueue_pos], 0x00, 128);
+        // strcpy(printqueue[printqueue_pos], "");
+        printqueue_pos = 0;
+    }
+}
+
+void print_debug_queue(const char *data)
+{
+    strcpy(printqueue[printqueue_pos], data);
+    printqueue_pos++;
+    if (printqueue_pos == 32)
+    {
+        _sanitize_queue();
+        
+    }
+    
 }
 
 /**
  * @brief calback func
- * 
- * @param ip 
+ *
+ * @param ip
+ */
+void connectedClient(String ip)
+{
+    is_Debugging = true;
+    for (size_t i = 0; i < printqueue_pos; i++)
+    {
+        print_debug(printqueue[printqueue_pos]);
+    }
+    _sanitize_queue();
+}
+
+/**
+ * @brief calback func
+ *
+ * @param ip
  */
 void connect_attempt_Client(String ip)
 {
@@ -40,8 +69,8 @@ void connect_attempt_Client(String ip)
 
 /**
  * @brief calback func
- * 
- * @param ip 
+ *
+ * @param ip
  */
 void reconnectedClient(String ip)
 {
@@ -51,8 +80,8 @@ void reconnectedClient(String ip)
 
 /**
  * @brief calback func
- * 
- * @param ip 
+ *
+ * @param ip
  */
 void disconnectedClient(String ip)
 {
@@ -62,23 +91,23 @@ void disconnectedClient(String ip)
 
 /**
  * @brief calback on data recieved
- * 
- * @param data 
+ *
+ * @param data
  */
 void debugdata(String data)
 {
-    // telnet.println(data.startsWith("bye"));
-    // if (data.startsWith("bye"))
-    // {
-        // /* code */
-    // }
-    
+    telnet.print("datais:");
+    telnet.print(data);
+    telnet.println(data.startsWith("bye"));
+    if (strncmp("bye", data.c_str(), 3) == 0)
+    {
+        telnet.print("fuck you");
+    }
 }
-
 
 /**
  * @brief setup Telnet connection for debugging purposes
- * 
+ *
  */
 bool setupTelnet()
 {
@@ -98,5 +127,4 @@ bool setupTelnet()
         Serial.println("Error.");
         return false;
     }
-
 }

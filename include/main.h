@@ -16,10 +16,13 @@
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
 #include <ESPTelnet.h>
+#include <ModbusClientTCPasync.h>
 
 #include "leds.h"
 #include "api.h"
 #include "debug.h"
+#include "relay.h"
+#include "modbus.h"
 
 #define DATA_PIN 23
 #endif
