@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <string.h>
 extern ESPTelnet telnet;
 extern bool is_Debugging;
 char printqueue[32][128];
