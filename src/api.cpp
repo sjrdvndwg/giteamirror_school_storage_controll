@@ -44,6 +44,7 @@ void setupRoutes()
     server.on("/", HTTP_POST, _parseconst);
     server.on("/multiseg/", HTTP_POST, _parse__MultiSeg);
     server.on("/relay/", HTTP_POST, _parse_relay);
+    server.on("/doors/", HTTP_GET, _send_doors);
     server.begin();
 }
 
@@ -88,6 +89,11 @@ Pattern _get_Anim(int animnumger)
         return NONE;
         break;
     }
+}
+
+void _send_doors(){
+    //todo make fill status obj, find a way to store the corresponding order numbers
+    server.send(200, "application/json", "{}");
 }
 
 /**
@@ -314,6 +320,7 @@ void _parse_relay()
     switch (relay)
     {
     case 0:
+        print_debug("printsetting relay");
         ctl_relay(RELAY_0);
         break;
     case 1:

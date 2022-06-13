@@ -11,6 +11,7 @@ struct apidata_t{
 void connectToWiFi();
 void setupRoutes();
 
+void _parse_doors();
 void _parseconst();
 void _parse__MultiSeg();
 void _parse_relay();
