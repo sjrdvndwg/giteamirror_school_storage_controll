@@ -173,6 +173,21 @@ bool setLed(int lednum, CRGB::HTMLColorCode color)
     return true;
 }
 
+bool setLed(int lednum, CRGB color)
+{
+    try
+    {
+        leds[lednum] = color;
+    }
+    catch (const std::exception &e)
+    {
+        return false;
+    }
+    return true;
+}
+
+
+
 void updateLeds()
 {
     if (animated_units.unit_0 != NONE)
@@ -437,46 +452,38 @@ bool setUnit(CRGB color, int unitnum)
 {
 
     int offset = 0;
-    switch (unitnum)
-    {
-    case 0:
-        offset = 0;
-        break;
-    case 1:
-        offset = UNIT_AMOUNT * 1;
-        break;
-    case 2:
-        offset = UNIT_AMOUNT * 2;
-        break;
-    case 3:
-        offset = UNIT_AMOUNT * 3;
-        break;
-    case 4:
-        offset = UNIT_AMOUNT * 4;
-        break;
-    case 5:
-        offset = UNIT_AMOUNT * 5;
-        break;
-    case 6:
-        offset = UNIT_AMOUNT * 6;
-        break;
-    case 7:
-        offset = UNIT_AMOUNT * 7;
-        break;
-    case 8:
-        offset = UNIT_AMOUNT * 8;
-        break;
-    default:
-        break;
-    }
-
-    // if (unitnum == 0)
+    offset = UNIT_AMOUNT * unitnum;
+    // switch (unitnum)
     // {
+    // case 0:
     //     offset = 0;
-    // }
-    // else
-    // {
-    //     offset = UNIT_AMOUNT * (unitnum - 1);
+    //     break;
+    // case 1:
+    //     offset = UNIT_AMOUNT * 1;
+    //     break;
+    // case 2:
+    //     offset = UNIT_AMOUNT * 2;
+    //     break;
+    // case 3:
+    //     offset = UNIT_AMOUNT * 3;
+    //     break;
+    // case 4:
+    //     offset = UNIT_AMOUNT * 4;
+    //     break;
+    // case 5:
+    //     offset = UNIT_AMOUNT * 5;
+    //     break;
+    // case 6:
+    //     offset = UNIT_AMOUNT * 6;
+    //     break;
+    // case 7:
+    //     offset = UNIT_AMOUNT * 7;
+    //     break;
+    // case 8:
+    //     offset = UNIT_AMOUNT * 8;
+    //     break;
+    // default:
+    //     break;
     // }
 
     // offset the leds in the array by UNIT_AMOUNT*(unitnum-1) and set the leds to the specified color

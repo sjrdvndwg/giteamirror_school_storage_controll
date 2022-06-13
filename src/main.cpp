@@ -12,19 +12,18 @@
 #include "main.h"
 
 volatile int interruptcounter;
+volatile bool order = false;
+
+bool is_Debugging;
+
 animated_t animated_units;
 Anim_Offset_t offsett;
 unit_colors_t colors;
-volatile bool order = false;
-bool is_Debugging;
 
-// Define the array of leds
+
 CRGB leds[NUM_LEDS];
-hw_timer_t *animtimer = NULL;
-
-// TaskHandle_t MAIN_LOOP;
-// TaskHandle_t update_LOOP;
 CRGB allcolor;
+
 WebServer server(80);
 ESPTelnet telnet;
 

@@ -65,6 +65,7 @@ typedef enum colorset
 void color(ColorSet CS);
 
 bool setLed(int lednum, CRGB::HTMLColorCode color);
+bool setLed(int lednum, CRGB color);
 
 void updateLeds();
 
