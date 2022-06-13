@@ -8,7 +8,14 @@
 	"settings": {
 		"files.associations": {
 			"*.h": "c",
-			"exception": "cpp"
+			"*.cpp": "cpp",
+			"exception": "cpp",
+			"*.tcc": "cpp",
+			"algorithm": "cpp",
+			"random": "cpp",
+			"istream": "cpp",
+			"typeinfo": "cpp",
+			"string": "cpp"
 		}
 	}
 }
