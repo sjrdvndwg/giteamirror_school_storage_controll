@@ -16,10 +16,10 @@ volatile bool order = false;
 
 bool is_Debugging;
 
-animated_t animated_units;
-Anim_Offset_t offsett;
-unit_colors_t colors;
-
+// animated_t animated_units;
+// Anim_Offset_t offsett;
+// unit_colors_t colors;
+ledData_t leddata;
 
 CRGB leds[NUM_LEDS];
 CRGB allcolor;

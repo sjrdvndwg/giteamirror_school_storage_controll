@@ -18,6 +18,9 @@
 #include <ESPTelnet.h>
 #include <ModbusClientTCPasync.h>
 
+#include "types.h"
+#include "structs.h"
+
 #include "leds.h"
 #include "api.h"
 #include "debug.h"

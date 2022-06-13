@@ -5,10 +5,6 @@ uint16_t port = 502;
 
 ModbusClientTCPasync MB(ip, port);
 
-// function protos
-void _handleData(ModbusMessage response, uint32_t token);
-void _handleError(Error error, uint32_t token);
-
 // Define an onData handler function to receive the regular responses
 // Arguments are Modbus server ID, the function code requested, the message data and length of it,
 // plus a user-supplied token to identify the causing request

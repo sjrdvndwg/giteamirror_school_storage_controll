@@ -1,5 +1,6 @@
 pio = '/root/.platformio/penv/bin/pio'
-
+makedoc:
+	C:\Program Files\doxygen\bin\doxygen Doxyfile
 all:
 	${pio} -f -c vim run
 

@@ -1,5 +1,6 @@
-make.exe --dry-run --always-make --keep-going --print-directory
+make.exe --dry-run --keep-going --print-directory
 make.exe: Entering directory `c:/Users/sjoerd/Documents/platformio/Projects/ledstrip'
-'/root/.platformio/penv/bin/pio' -f -c vim run
+C:\Program Files\doxygen\bin\doxygen Doxyfile
+ 
 make.exe: Leaving directory `c:/Users/sjoerd/Documents/platformio/Projects/ledstrip'
  
