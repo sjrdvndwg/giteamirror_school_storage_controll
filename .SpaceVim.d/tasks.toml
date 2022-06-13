@@ -1,0 +1,24 @@
+
+[all]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f','-c', 'vim', 'run', '-v']
+
+[upload]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f', '-c','vim', 'run','--target','upload','-v']
+
+[clean]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f', '-c','vim', 'run','--target','clean','-v']
+
+[program]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f', '-c','vim', 'run','--target','program','-v']
+
+[uploadfs]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f', '-c','vim', 'run','--target','uploadfs','-v']
+
+[update]
+  command = '/root/.platformio/penv/bin/pio'
+  args = ['-f', '-c','vim', 'update']
