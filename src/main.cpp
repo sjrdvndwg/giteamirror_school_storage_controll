@@ -16,10 +16,8 @@ volatile bool order = false;
 
 bool is_Debugging;
 
-// animated_t animated_units;
-// Anim_Offset_t offsett;
-// unit_colors_t colors;
 ledData_t leddata;
+Storage_t storage;
 
 CRGB leds[NUM_LEDS];
 CRGB allcolor;
@@ -34,13 +32,13 @@ void setup()
   connectToWiFi();
   setupTelnet();
   setup_relays();
-  
+
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(LED_BRIGHTNESS);
-
 }
 void loop()
 {
+
   server.handleClient();
   telnet.loop();
   if (order)

@@ -46,7 +46,7 @@ void MB_make_request()
     static unsigned long lastMillis = millis();
     char str[128];
 
-    sprintf(str,"sending request with token %d\n", (uint32_t)lastMillis);
+    sprintf(str, "sending request with token %d\n", (uint32_t)lastMillis);
     print_debug(str);
 
     Error err;
@@ -54,7 +54,7 @@ void MB_make_request()
     if (err != SUCCESS)
     {
         ModbusError e(err);
-        sprintf(str,"Error creating request: %02X - %s\n", (int)e, (const char *)e);
+        sprintf(str, "Error creating request: %02X - %s\n", (int)e, (const char *)e);
         print_debug(str);
     }
 }

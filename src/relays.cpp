@@ -1,6 +1,7 @@
 #include "main.h"
 
-void setup_relays(){
+void setup_relays()
+{
     pinMode(RELAY_0, OUTPUT);
     pinMode(RELAY_1, OUTPUT);
     pinMode(RELAY_2, OUTPUT);
@@ -21,7 +22,8 @@ void setup_relays(){
     digitalWrite(RELAY_8, HIGH);
 }
 
-void ctl_relay(int relay_pin){
+void ctl_relay(int relay_pin)
+{
     digitalWrite(relay_pin, LOW);
     delay(150);
     digitalWrite(relay_pin, HIGH);

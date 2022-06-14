@@ -5,13 +5,13 @@ using namespace std;
 
 extern ESPTelnet telnet;
 extern bool is_Debugging;
-char **printqueue; 
+char **printqueue;
 uint8_t printqueue_pos = 0;
 
-inline void _display_prompt(){
-  telnet.print("\n>>");
+inline void _display_prompt()
+{
+    telnet.print("\n>>");
 }
-
 
 void print_debug(const char *data)
 {
@@ -47,88 +47,84 @@ void print_debug_queue(const char *data)
     if (printqueue_pos == 32)
     {
         _sanitize_queue();
-        
     }
-    
 }
 
-inline bool __compare(const char * str1, const char *str2, int lenght){
-    if(strncmp(str1,str2,lenght) == 0){
+inline bool __compare(const char *str1, const char *str2, int lenght)
+{
+    if (strncmp(str1, str2, lenght) == 0)
+    {
         return true;
     }
-    else{
+    else
+    {
         return false;
     }
 }
 
-void _parse_CMD(String data){//TODO fix this function the sub values for the led and for the color arn't seperated
+void _parse_CMD(String data)
+{ // TODO fix this function the sub values for the led and for the color arn't seperated
     String secdata = data;
 
     Serial.println(data.indexOf(' ', 0));
     int end1 = data.indexOf(' ', 0);
-    int end2 = data.indexOf(' ', end1+1);
+    int end2 = data.indexOf(' ', end1 + 1);
     // int end3 = data.indexOf(' ', end2+1);
     Serial.print(end1);
     Serial.print(end2);
     // Serial.print(end3);
 
-
     if (__compare("set-led", data.c_str(), 8))
     {
 
-        String led_index=secdata.substring(8,9);
+        String led_index = secdata.substring(8, 9);
         print_debug(data);
         String color = data.substring(10);
-        int led_indexval=led_index.toInt();
-        if (led_indexval >27)
+        int led_indexval = led_index.toInt();
+        if (led_indexval > 27)
         {
             led_indexval = 27;
-        }else if (led_indexval<0)
+        }
+        else if (led_indexval < 0)
         {
             led_indexval = 0;
         }
         print_debug(led_index);
         print_debug(color);
 
-        long colorval =color.toInt();
-        setLed(led_indexval,CRGB(colorval));
+        long colorval = color.toInt();
+        setLed(led_indexval, CRGB(colorval));
         _display_prompt();
     }
-    else if (__compare("set-unit 0 12345678", data.c_str(),9))
+    else if (__compare("set-unit 0 12345678", data.c_str(), 9))
     {
-        
-        String unit_index=data.substring(8,9);
+
+        String unit_index = data.substring(8, 9);
         String color = data.substring(10);
-        int unit_indexval=unit_index.toInt();
-        if (unit_indexval >9)
+        int unit_indexval = unit_index.toInt();
+        if (unit_indexval > 9)
         {
             unit_indexval = 9;
-        }else if (unit_indexval<0)
+        }
+        else if (unit_indexval < 0)
         {
             unit_indexval = 0;
         }
         print_debug(unit_index);
         print_debug(color);
 
-        long colorval =color.toInt();
-        setLed(unit_indexval,CRGB(colorval));
+        long colorval = color.toInt();
+        setLed(unit_indexval, CRGB(colorval));
         _display_prompt();
-
     }
-    
-    
 }
 
-
-
-
-
-    /**
-     * @brief calback func
-     *
-     * @param ip
-     */
-    void connectedClient(String ip)
+/**
+ * @brief calback func
+ *
+ * @param ip
+ */
+void connectedClient(String ip)
 {
     is_Debugging = true;
     for (size_t i = 0; i < printqueue_pos; i++)
@@ -176,9 +172,9 @@ void disconnectedClient(String ip)
  */
 void debugdata(String data)
 {
-  telnet.println(data);
-  _parse_CMD(data);
-  telnet.print(">>");
+    telnet.println(data);
+    _parse_CMD(data);
+    telnet.print(">>");
 }
 
 /**

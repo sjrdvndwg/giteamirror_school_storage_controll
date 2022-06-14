@@ -7,6 +7,4 @@
 void _handleData(ModbusMessage response, uint32_t token);
 void _handleError(Error error, uint32_t token);
 
-
-
-#endif //MODBUS_H
+#endif // MODBUS_H

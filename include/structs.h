@@ -3,10 +3,11 @@
 #include "main.h"
 
 /**
- * \struct animation patterns 
+ * \struct animation patterns
  * \relates ledData_t
  */
-struct animated_t {
+struct animated_t
+{
     Pattern unit_0 = NONE;
     Pattern unit_1 = NONE;
     Pattern unit_2 = NONE;
@@ -18,10 +19,11 @@ struct animated_t {
     Pattern unit_8 = NONE;
 };
 /**
- * \struct animation offset (unused) 
+ * \struct animation offset (unused)
  * \relates ledData_t
  */
-struct Anim_Offset_t {
+struct Anim_Offset_t
+{
     int offset_0 = 0;
     int offset_1 = 0;
     int offset_2 = 0;
@@ -36,7 +38,8 @@ struct Anim_Offset_t {
  * \struct colors for each of the unit lockers
  * \relates ledData_t
  */
-struct unit_colors_t {
+struct unit_colors_t
+{
     CRGB unit0;
     CRGB unit1;
     CRGB unit2;
@@ -48,15 +51,25 @@ struct unit_colors_t {
     CRGB unit8;
 };
 /**
- * \struct a struct to combine all led related structs 
- * 
+ * \struct a struct to combine all led related structs
+ *
  */
-struct ledData_t{
+struct ledData_t
+{
     unit_colors_t colors;
     Anim_Offset_t AnimOffset;
     animated_t AnimBool;
 };
 
+/**
+ * \struct
+ * \brief a struct to keep track of which of the doors should have a lunchbox behind them, and to which order the lunchbox belongs
+ */
+struct Storage_t
+{
+    bool haslunch[8];
+    char *OrderId[8][4];
+};
 
 struct apidata_t
 {
@@ -65,7 +78,5 @@ struct apidata_t
     uint8_t G = 0;
     uint8_t B = 0;
 };
-
-
 
 #endif // __STRUCTS_H__
