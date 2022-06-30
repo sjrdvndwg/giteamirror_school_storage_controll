@@ -1,6 +1,8 @@
 #include "main.h"
 
-IPAddress ip = {192, 168, 11, 77}; // IP address of modbus server
+//! not in use
+
+IPAddress ip(192, 168, 137, 1);
 uint16_t port = 502;
 
 ModbusClientTCPasync MB(ip, port);

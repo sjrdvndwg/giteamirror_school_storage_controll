@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>stoage controller: data query functions</title>
+<title>storage controller: data query functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">stoage controller
+   <div id="projectname">storage controller
    </div>
    <div id="projectbrief">this is the program for the storage controller for the school project</div>
   </td>
@@ -91,12 +91,49 @@ $(document).ready(function(){initNavTree('group__api.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gabccc55e5d363c3d148f2c4fd0436d5c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api.html#gabccc55e5d363c3d148f2c4fd0436d5c1">_findfreedoor</a> ()</td></tr>
+<tr class="separator:gabccc55e5d363c3d148f2c4fd0436d5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f3e11c504c9dda78be363eff6660dac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api.html#ga5f3e11c504c9dda78be363eff6660dac">clear_door</a> (int doorindex)</td></tr>
+<tr class="memdesc:ga5f3e11c504c9dda78be363eff6660dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">takes a door index and sets the storage.haslunch[door index] to false to allow a new lunchbox to be placed there  <a href="group__api.html#ga5f3e11c504c9dda78be363eff6660dac">More...</a><br /></td></tr>
+<tr class="separator:ga5f3e11c504c9dda78be363eff6660dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1ed38a58b555959234fa59a53abe8918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api.html#ga1ed38a58b555959234fa59a53abe8918">_get_door_number</a> ()</td></tr>
 <tr class="memdesc:ga1ed38a58b555959234fa59a53abe8918"><td class="mdescLeft">&#160;</td><td class="mdescRight">query the esp32 for an empty storage door.  <a href="group__api.html#ga1ed38a58b555959234fa59a53abe8918">More...</a><br /></td></tr>
 <tr class="separator:ga1ed38a58b555959234fa59a53abe8918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7bbe7acf72232fcf451ddc046b1c6f65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__api.html#ga7bbe7acf72232fcf451ddc046b1c6f65">_set_door</a> ()</td></tr>
+<tr class="memdesc:ga7bbe7acf72232fcf451ddc046b1c6f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">assigns given order id from post request to a door seding back the doornumber and corrsponding order id if succes full, sends back 418 if it failed  <a href="group__api.html#ga7bbe7acf72232fcf451ddc046b1c6f65">More...</a><br /></td></tr>
+<tr class="separator:ga7bbe7acf72232fcf451ddc046b1c6f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gabccc55e5d363c3d148f2c4fd0436d5c1" name="gabccc55e5d363c3d148f2c4fd0436d5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabccc55e5d363c3d148f2c4fd0436d5c1">&#9670;&nbsp;</a></span>_findfreedoor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _findfreedoor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="api_8cpp_source.html#l00381">381</a> of file <a class="el" href="api_8cpp_source.html">api.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  382</span>{</div>
+<div class="line"><span class="lineno">  383</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">  384</span>  {</div>
+<div class="line"><span class="lineno">  385</span>    <span class="keywordflow">if</span> (!storage.haslunch[i])</div>
+<div class="line"><span class="lineno">  386</span>    {</div>
+<div class="line"><span class="lineno">  387</span>      <span class="keywordflow">return</span> i;</div>
+<div class="line"><span class="lineno">  388</span>    }</div>
+<div class="line"><span class="lineno">  389</span>  }</div>
+<div class="line"><span class="lineno">  390</span>  <span class="keywordflow">return</span> 99;</div>
+<div class="line"><span class="lineno">  391</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ga1ed38a58b555959234fa59a53abe8918" name="ga1ed38a58b555959234fa59a53abe8918"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1ed38a58b555959234fa59a53abe8918">&#9670;&nbsp;</a></span>_get_door_number()</h2>
 
@@ -114,14 +151,92 @@ Functions</h2></td></tr>
 
 <p>query the esp32 for an empty storage door. </p>
 
-<p class="definition">Definition at line <a class="el" href="api_8cpp_source.html#l00383">383</a> of file <a class="el" href="api_8cpp_source.html">api.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  384</span>{</div>
-<div class="line"><span class="lineno">  385</span>  <span class="keywordtype">char</span> *returndata;</div>
-<div class="line"><span class="lineno">  386</span>  <span class="keywordtype">int</span> found_number = 1;</div>
-<div class="line"><span class="lineno">  387</span>  sprintf(returndata, <span class="stringliteral">&quot;{\&quot;doorNR\&quot;: %d}&quot;</span>, found_number);</div>
-<div class="line"><span class="lineno">  388</span> </div>
-<div class="line"><span class="lineno">  389</span>  server.send(200, <span class="stringliteral">&quot;application/json&quot;</span>, returndata);</div>
-<div class="line"><span class="lineno">  390</span>}</div>
+<p class="definition">Definition at line <a class="el" href="api_8cpp_source.html#l00407">407</a> of file <a class="el" href="api_8cpp_source.html">api.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  408</span>{</div>
+<div class="line"><span class="lineno">  409</span>  <span class="keywordtype">char</span> returndata[30];</div>
+<div class="line"><span class="lineno">  410</span>  <span class="keywordtype">int</span> found_number = 0;</div>
+<div class="line"><span class="lineno">  411</span> </div>
+<div class="line"><span class="lineno">  412</span>  found_number = _findfreedoor();</div>
+<div class="line"><span class="lineno">  413</span> </div>
+<div class="line"><span class="lineno">  414</span>  sprintf(returndata, <span class="stringliteral">&quot;{\&quot;doorNR\&quot;:%d}&quot;</span>, found_number);</div>
+<div class="line"><span class="lineno">  415</span>  server.send(200, <span class="stringliteral">&quot;application/json&quot;</span>, returndata);</div>
+<div class="line"><span class="lineno">  416</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7bbe7acf72232fcf451ddc046b1c6f65" name="ga7bbe7acf72232fcf451ddc046b1c6f65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7bbe7acf72232fcf451ddc046b1c6f65">&#9670;&nbsp;</a></span>_set_door()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _set_door </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>assigns given order id from post request to a door seding back the doornumber and corrsponding order id if succes full, sends back 418 if it failed </p>
+
+<p class="definition">Definition at line <a class="el" href="api_8cpp_source.html#l00423">423</a> of file <a class="el" href="api_8cpp_source.html">api.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  424</span>{</div>
+<div class="line"><span class="lineno">  425</span>  <span class="keywordtype">char</span> dest[256];</div>
+<div class="line"><span class="lineno">  426</span> </div>
+<div class="line"><span class="lineno">  427</span>  print_debug(<span class="stringliteral">&quot;setting door&quot;</span>);</div>
+<div class="line"><span class="lineno">  428</span> </div>
+<div class="line"><span class="lineno">  429</span>  <span class="keywordflow">if</span> (server.hasArg(<span class="stringliteral">&quot;plain&quot;</span>) == <span class="keyword">false</span>)</div>
+<div class="line"><span class="lineno">  430</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  431</span>  String body = server.arg(<span class="stringliteral">&quot;plain&quot;</span>);</div>
+<div class="line"><span class="lineno">  432</span>  deserializeJson(jsonDocument, body);</div>
+<div class="line"><span class="lineno">  433</span>  String orderid = jsonDocument[<span class="stringliteral">&quot;Order_id&quot;</span>];</div>
+<div class="line"><span class="lineno">  434</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 9; i++)</div>
+<div class="line"><span class="lineno">  435</span>  {</div>
+<div class="line"><span class="lineno">  436</span>    <span class="keywordflow">if</span> (!storage.haslunch[i])</div>
+<div class="line"><span class="lineno">  437</span>    {</div>
+<div class="line"><span class="lineno">  438</span>      strncpy(storage.OrderId[i], orderid.c_str(), 5);</div>
+<div class="line"><span class="lineno">  439</span>      storage.haslunch[i] = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  440</span> </div>
+<div class="line"><span class="lineno">  441</span>      sprintf(dest, <span class="stringliteral">&quot;{\&quot;door_number\&quot;:%d, \&quot;orderid\&quot;: \&quot;%s\&quot;}&quot;</span>, i, orderid.c_str());</div>
+<div class="line"><span class="lineno">  442</span>      server.send(200, <span class="stringliteral">&quot;application/json&quot;</span>, dest);</div>
+<div class="line"><span class="lineno">  443</span>      <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  444</span>    }</div>
+<div class="line"><span class="lineno">  445</span>  }</div>
+<div class="line"><span class="lineno">  446</span>  server.send(418, <span class="stringliteral">&quot;application/json&quot;</span>, <span class="stringliteral">&quot;{\&quot;teapot\&quot;:\&quot;coffee\&quot;}&quot;</span>);</div>
+<div class="line"><span class="lineno">  447</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga5f3e11c504c9dda78be363eff6660dac" name="ga5f3e11c504c9dda78be363eff6660dac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5f3e11c504c9dda78be363eff6660dac">&#9670;&nbsp;</a></span>clear_door()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear_door </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>doorindex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>takes a door index and sets the storage.haslunch[door index] to false to allow a new lunchbox to be placed there </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">doorindex</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="api_8cpp_source.html#l00398">398</a> of file <a class="el" href="api_8cpp_source.html">api.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  399</span>{</div>
+<div class="line"><span class="lineno">  400</span>  storage.haslunch[doorindex] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  401</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

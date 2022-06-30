@@ -5,11 +5,11 @@
 void connectToWiFi();
 void setupRoutes();
 
-void _send_doors();
 void _parseconst();
 void _parse__MultiSeg();
 void _parse_relay();
 
 void _get_door_number();
+void _set_door();
 
 #endif // API_H

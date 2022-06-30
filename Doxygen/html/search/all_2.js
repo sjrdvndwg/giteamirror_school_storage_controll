@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['color_0',['color',['../leds_8cpp.html#a740e0a405d72c9ee090ec9c7adda093d',1,'leds.cpp']]],
-  ['colors_1',['colors',['../structcolors.html',1,'']]]
+  ['clear_5fdoor_0',['clear_door',['../group__api.html#ga5f3e11c504c9dda78be363eff6660dac',1,'api.cpp']]],
+  ['color_1',['color',['../group__hardware.html#ga740e0a405d72c9ee090ec9c7adda093d',1,'color(ColorSet CS):&#160;leds.cpp'],['../group__hardware.html#ga740e0a405d72c9ee090ec9c7adda093d',1,'color(ColorSet CS):&#160;leds.cpp']]],
+  ['colors_2',['colors',['../structcolors.html',1,'']]],
+  ['control_20functions_3',['control functions',['../group__hardware.html',1,'']]]
 ];

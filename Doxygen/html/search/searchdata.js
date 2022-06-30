@@ -1,11 +1,12 @@
 var indexSectionsWithContent =
 {
   0: "_acdlmsu",
-  1: "aclu",
+  1: "aclsu",
   2: "lm",
   3: "_cs",
-  4: "d",
-  5: "d"
+  4: "l",
+  5: "cd",
+  6: "d"
 };
 
 var indexSectionNames =
@@ -14,8 +15,9 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "groups",
-  5: "pages"
+  4: "variables",
+  5: "groups",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -24,7 +26,8 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Modules",
-  5: "Pages"
+  4: "Variables",
+  5: "Modules",
+  6: "Pages"
 };
 

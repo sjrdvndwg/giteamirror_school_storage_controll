@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_20query_20functions_0',['data query functions',['../group__api.html',1,'']]]
+  ['control_20functions_0',['control functions',['../group__hardware.html',1,'']]]
 ];

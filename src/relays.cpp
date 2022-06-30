@@ -1,5 +1,9 @@
 #include "main.h"
 
+/**
+ * @brief Set the up relay pins as output and write them high to not activate the relayo
+ *
+ */
 void setup_relays()
 {
     pinMode(RELAY_0, OUTPUT);
@@ -22,6 +26,11 @@ void setup_relays()
     digitalWrite(RELAY_8, HIGH);
 }
 
+/**
+ * @brief set the passed pin low then high
+ *
+ * @param relay_pin
+ */
 void ctl_relay(int relay_pin)
 {
     digitalWrite(relay_pin, LOW);

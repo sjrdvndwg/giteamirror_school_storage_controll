@@ -67,8 +67,8 @@ struct ledData_t
  */
 struct Storage_t
 {
-    bool haslunch[8];
-    char *OrderId[8][4];
+    bool haslunch[9];
+    char OrderId[9][5];
 };
 
 struct apidata_t

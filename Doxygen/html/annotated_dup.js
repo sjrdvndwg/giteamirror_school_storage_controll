@@ -7,5 +7,6 @@ var annotated_dup =
     [ "apidata_t", "structapidata__t.html", null ],
     [ "colors", "structcolors.html", null ],
     [ "ledData_t", "structled_data__t.html", null ],
+    [ "Storage_t", "struct_storage__t.html", null ],
     [ "unit_colors_t", "structunit__colors__t.html", null ]
 ];

@@ -14,9 +14,6 @@ extern CRGB leds[NUM_LEDS];
 volatile extern bool order;
 uint16_t animinc = 0;
 
-// extern animated_t animated_units;
-// extern Anim_Offset_t offsett;
-// extern unit_colors_t colors;
 extern ledData_t leddata;
 
 /** \addtogroup hardware control functions

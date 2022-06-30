@@ -2,14 +2,13 @@
 
 extern WebServer server;
 extern CRGB leds[NUM_LEDS];
-const char *SSID = "MAAKHUIS";
-const char *PWD = "123456789";
 
-apidata_t parseddata;
+const char *SSID = "MAAKHUIS"; //! change for production
+const char *PWD = "123456789"; //! change for production
+
 extern ledData_t leddata;
-// extern animated_t animated_units;
-// extern unit_colors_t colors;
 extern volatile bool order;
+extern Storage_t storage;
 extern CRGB allcolor;
 
 StaticJsonDocument<JSONDOCSIZE> jsonDocument;
@@ -20,9 +19,16 @@ StaticJsonDocument<JSONDOCSIZE> jsonDocument;
  */
 void connectToWiFi()
 {
+  // TODO set to proper ipaddr subnet and gateway
+  //  Set your Static IP address
+  IPAddress local_IP(192, 168, 137, 110);
+  // Set your Gateway IP address
+  IPAddress gateway(192, 168, 137, 1);
+  IPAddress subnet(255, 255, 255, 0);
+
   Serial.print("Connecting to ");
   Serial.println(SSID);
-
+  WiFi.config(local_IP, gateway, subnet);
   WiFi.begin(SSID, PWD);
 
   while (!WiFi.isConnected())
@@ -42,14 +48,14 @@ void connectToWiFi()
  */
 void setupRoutes()
 {
-  // direct control
+  // direct pin control
   server.on("/", HTTP_POST, _parseconst);
-  server.on("/multiseg/", HTTP_POST, _parse__MultiSeg);
-  server.on("/relay/", HTTP_POST, _parse_relay);
-  server.on("/doors/", HTTP_GET, _send_doors);
+  server.on("/multiseg", HTTP_POST, _parse__MultiSeg);
+  server.on("/relay", HTTP_POST, _parse_relay);
 
   // query data
   server.on("/get_door_number", HTTP_POST, _get_door_number);
+  server.on("/set_door_and_order", HTTP_POST, _set_door);
 
   server.begin();
 }
@@ -96,20 +102,13 @@ Pattern _get_Anim(int animnumger)
   }
 }
 
-void _send_doors()
-{
-  // todo make fill status obj, find a way to store the corresponding order
-  // numbers
-  server.send(200, "application/json", "{}");
-}
-
 /**
  * @brief parse single segment
  *
  */
 void _parseconst()
 {
-  server.send(200, "application/json", "{}");
+  apidata_t parseddata;
 
   print_debug("parsing singel segment");
   if (server.hasArg("plain") == false)
@@ -268,6 +267,7 @@ void _parseconst()
   }
 
   order = true;
+  server.send(200, "application/json", "{}");
 }
 
 /**
@@ -320,6 +320,10 @@ void _parse__MultiSeg()
   order = true;
 }
 
+/**
+ * @brief parse the http Post request to open the proper relay
+ *
+ */
 void _parse_relay()
 {
   server.send(200, "application/json", "{}");
@@ -369,12 +373,32 @@ void _parse_relay()
 }
 
 // query data
-
 /** \addtogroup api data query functions
  *
  * @{
  *
  */
+int _findfreedoor()
+{
+  for (int i = 0; i < 9; i++)
+  {
+    if (!storage.haslunch[i])
+    {
+      return i;
+    }
+  }
+  return 99;
+}
+
+/**
+ * @brief takes a door index and sets the storage.haslunch[door index] to false to allow a new lunchbox to be placed there
+ *
+ * @param doorindex
+ */
+void clear_door(int doorindex)
+{
+  storage.haslunch[doorindex] = false;
+}
 
 /**
  * @brief query the esp32 for an empty storage door.
@@ -382,11 +406,43 @@ void _parse_relay()
  */
 void _get_door_number()
 {
-  char *returndata;
-  int found_number = 1;
-  sprintf(returndata, "{\"doorNR\": %d}", found_number);
+  char returndata[30];
+  int found_number = 0;
 
+  found_number = _findfreedoor();
+
+  sprintf(returndata, "{\"doorNR\":%d}", found_number);
   server.send(200, "application/json", returndata);
 }
 
+/**
+ * \brief assigns given order id from post request to a door seding back the doornumber and corrsponding order id if succes full, sends back 418 if it failed
+ *
+ *
+ */
+void _set_door()
+{
+  char dest[256];
+
+  print_debug("setting door");
+
+  if (server.hasArg("plain") == false)
+    return;
+  String body = server.arg("plain");
+  deserializeJson(jsonDocument, body);
+  String orderid = jsonDocument["Order_id"];
+  for (int i = 0; i < 9; i++)
+  {
+    if (!storage.haslunch[i])
+    {
+      strncpy(storage.OrderId[i], orderid.c_str(), 5);
+      storage.haslunch[i] = true;
+
+      sprintf(dest, "{\"door_number\":%d, \"orderid\": \"%s\"}", i, orderid.c_str());
+      server.send(200, "application/json", dest);
+      return;
+    }
+  }
+  server.send(418, "application/json", "{\"teapot\":\"coffee\"}");
+}
 /** @} */

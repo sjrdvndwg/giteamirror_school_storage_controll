@@ -12,7 +12,6 @@
 #define RELAY_8 2
 
 void setup_relays();
-
 void ctl_relay(int relay_pin);
 
 #endif
